@@ -1,6 +1,8 @@
 {
   "name": "minimalpedia",
   "version": "0.1.0",
+  "license": "MIT",
+  "homepage": "https://vantezzen.github.io/minimalpedia",
   "dependencies": {
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
