@@ -19,7 +19,7 @@ export default class ResultList extends Component {
                 {
                     // Show results if found, otherwise display message
                     Object.keys(results).length > 0 ? Object.keys(results).map(result => (
-                        <Result result={results[result]} />
+                        <Result key={results[result].title} result={results[result]} />
                     )) : (
                         <div className="result overflow-hidden h-48 p-4 flex mb-12 no-underline color-inherit">
                             <div className="w-100">
