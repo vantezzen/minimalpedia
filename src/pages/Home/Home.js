@@ -43,7 +43,7 @@ export default class Home extends Component {
     })
 
     // Get query results
-    let results = (await wiki().search(query)).results;
+    let results = (await wiki({ apiUrl: 'https://en.wikipedia.org/w/api.php' }).search(query)).results;
 
     // Show general information
     if (query === this.state.query) {
@@ -72,7 +72,7 @@ export default class Home extends Component {
 
     // Query for details on the first 10 results
     for (let key = 0; key < 10 && key < results.length; key++) {
-      wiki().page(results[key]).then(async (page) => {
+      wiki({ apiUrl: 'https://en.wikipedia.org/w/api.php' }).page(results[key]).then(async (page) => {
         // Get image and summary
         let image = await page.mainImage()
         let text = await page.summary()

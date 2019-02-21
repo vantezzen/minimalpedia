@@ -54,7 +54,7 @@ class Article extends Component {
     document.title = query.replace(/_/g, ' ') + ' - minimalpedia';
 
     // Get information using wikipedia API
-    wiki().page(query).then((page) => {
+    wiki({ apiUrl: 'https://en.wikipedia.org/w/api.php' }).page(query).then((page) => {
         // Get image
         page.mainImage().then(image => {
           this.setState({
