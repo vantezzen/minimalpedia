@@ -1,0 +1,49 @@
+/* Styles for articles */
+/* GENERAL */
+.article {
+    font-family: 'Merriweather', serif;
+    font-size: 12px;
+    line-height: 2.5;
+}
+
+body.light-mode .article {
+    color: #212121;
+}
+body.dark-mode .article {
+    color: #EBEBEB;
+}
+
+.article h2 {
+    margin-top: 2rem;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.article a {
+    color: inherit !important;
+    text-decoration: none;
+    border-bottom: 1px dotted #999999;
+}
+
+/* SIDEBAR */
+.article .sidebar {
+    min-height: 100vh;
+}
+body.light-mode .article .sidebar {
+    background-color: #F8F8F8;
+}
+body.dark-mode .article .sidebar {
+    background-color: #1f2027;
+}
+
+/* TABLES */
+.article tr {
+    vertical-align: top;
+}
+.sidebar-table tr > td:not([colspan="2"]):first-child {
+    font-weight: 600;
+}
+
+.sidebar-table {
+    border-spacing: 1rem;
+    border-collapse: separate;
+}

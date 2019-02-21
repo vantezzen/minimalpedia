@@ -1,0 +1,48 @@
+.search-box {
+    max-width: 100%;
+}
+
+.result-img {
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+
+@media (max-width: 500px) {
+    .result-img-container {
+        display: none;
+    }
+
+    .result-text-container {
+        width: 100%;
+    }
+}
+
+@media (min-width: 501px) and (max-width: 700px) {
+    .result-img-container {
+        width: 40%;
+    }
+
+    .result-text-container {
+        width: 60%;
+    }
+}
+
+@media (min-width: 701px) and (max-width: 900px) {
+    .result-img-container {
+        width: 30%;
+    }
+
+    .result-text-container {
+        width: 70%;
+    }
+}
+
+@media (min-width: 901px) {
+    .result-img-container {
+        width: 20%;
+    }
+
+    .result-text-container {
+        width: 80%;
+    }
+}
