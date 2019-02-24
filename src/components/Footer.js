@@ -6,7 +6,7 @@ const Footer = () => {
     const darkMode = useDarkMode(false);
 
     const scrollToTop = () => {
-        document.querySelector('body').scrollIntoView({
+        document.querySelector('nav').scrollIntoView({
             behavior: 'smooth'
         });
     }

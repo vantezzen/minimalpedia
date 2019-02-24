@@ -1,6 +1,6 @@
 {
   "name": "minimalpedia",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "license": "MIT",
   "homepage": "https://vantezzen.github.io/minimalpedia",
   "dependencies": {
@@ -20,7 +20,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "tailwind": "tailwind",
-    "styles:build": "tailwind build src/styles/tailwind.src.css -c tailwind.js -o src/styles/tailwind.css"
+    "styles:build": "tailwind build src/styles/tailwind.src.css -c tailwind.js -o src/styles/tailwind.css",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -32,6 +34,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "gh-pages": "^2.0.1",
     "tailwindcss": "^0.7.4"
   }
 }
