@@ -102,31 +102,41 @@ class Article extends Component {
     // Extract sidebar
     let sidebar = el.querySelectorAll('table.infobox')[0];
 
-    // Remove images from sidebar
-    sidebar.querySelectorAll('.image').forEach(element => {
-      element.remove()
-    });
-
-    // Remove wikipedia styles from sidebar table
-    sidebar.removeAttribute('style');
-    sidebar.querySelectorAll('[style]:not([style=""]').forEach(element => {
-      element.removeAttribute('style')
-    });
-
-    // Remove first two lines of table as they are simply the article title
-    let amountRemoved = 0;
-    sidebar.querySelectorAll('tr').forEach(element => {
-      if (amountRemoved < 2) {
-        element.remove();
-      } else {
-        return false;
+    // Only process sidebar if a sidebar exists
+    if (sidebar) {
+      // Remove images from sidebar
+      let images = sidebar.querySelectorAll('.image');
+      if (images) {
+        images.forEach(element => {
+          element.remove()
+        });
       }
-      amountRemoved++;
-    });
 
-    // Insert sidebar into page
-    this.sidebar.current.innerHTML = '';
-    this.sidebar.current.appendChild(sidebar);
+
+      // Remove wikipedia styles from sidebar table
+      sidebar.removeAttribute('style');
+      let elementsWithStyle = sidebar.querySelectorAll('[style]:not([style=""]');
+      if (elementsWithStyle) {
+        elementsWithStyle.forEach(element => {
+          element.removeAttribute('style')
+        });
+      }
+
+      // Remove first two lines of table as they are simply the article title
+      let amountRemoved = 0;
+      sidebar.querySelectorAll('tr').forEach(element => {
+        if (amountRemoved < 2) {
+          element.remove();
+        } else {
+          return false;
+        }
+        amountRemoved++;
+      });
+
+      // Insert sidebar into page
+      this.sidebar.current.innerHTML = '';
+      this.sidebar.current.appendChild(sidebar);
+    }
 
     /////// PROCESS MAIN CONTENT ///////
     let content = el.querySelectorAll('div')[0];
