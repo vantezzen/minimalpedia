@@ -38,7 +38,7 @@ export default class Search extends Component {
                     <div className={ "search " + (this.props.expanded ? 'pt-32' : '') }>
                         <input 
                             type="text" 
-                            className="search-box h-48 w-100 text-5xl font-bold bg-transparent" 
+                            className="search-box h-48 w-full outline-none text-5xl font-bold bg-transparent" 
                             placeholder="Search..." 
                             value={ this.state.query } 
                             onChange={ this.updateQuery } 

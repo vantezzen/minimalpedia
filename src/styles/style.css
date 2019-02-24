@@ -5,6 +5,7 @@ html, body {
 }
 
 body {
+  transition: all 0.5s ease-in-out;
   font-family: 'Open Sans', sans-serif;
 }
 
@@ -18,8 +19,6 @@ body.dark-mode .whiteInDarkMode {
 }
 
 * {
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
   max-width: 100vw;
 }
 
@@ -93,4 +92,8 @@ body.dark-mode .shadow {
 
 .color-inherit {
   color: inherit;
+}
+
+.outline-none:focus, .outline-none:hover, .outline-none:active {
+  outline: 0;
 }

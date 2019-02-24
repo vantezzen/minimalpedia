@@ -8,7 +8,7 @@ const Footer = () => {
     return (
         <div className="footer fixed w-screen flex items-center justify-between flex-wrap p-6">
             {/* Darkmode toggle button */}
-            <button onClick={darkMode.toggle}>
+            <button onClick={darkMode.toggle} className="outline-none">
                 <Moon className="whiteInDarkMode" />
             </button>
             <div />
