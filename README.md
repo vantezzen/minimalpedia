@@ -40,4 +40,4 @@ Contributions of any kind are welcome!
 Bugs and feature request are tracked on [GitHub](https://github.com/vantezzen/minimalpedia/issues).
 
 ## Licence
-
+This project is licensed under the MIT License - see the `LICENSE` file for details.
