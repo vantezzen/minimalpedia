@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/minimalpedia/precache-manifest.5273fe9b498d378a14f81de57bfa0888.js"
+  "/minimalpedia/precache-manifest.b97ba890bc064ffc1e5f8f0ec981302c.js"
 );
 
 workbox.clientsClaim();
