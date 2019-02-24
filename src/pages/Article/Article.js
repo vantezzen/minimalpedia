@@ -98,6 +98,26 @@ class Article extends Component {
       });
     });
 
+    // Remove specific style attributes
+    let elementsWithStyle = el.querySelectorAll('[style]:not([style=""]');
+    if (elementsWithStyle) {
+      // This regex will be selecting the following CSS styles and their values:
+      // - background
+      // - background-color
+      // - border
+      // - border-*
+      // - color
+      let styleRegex = /(background(-color)?|border(-[^:]*)?|color):.*?(;|$)/gi;
+      elementsWithStyle.forEach(element => {
+        let style = element.getAttribute('style');
+
+        // Remove attributes stated above from the element style
+        style = style.replace(styleRegex, '');
+
+        element.setAttribute('style', style);
+      });
+    }
+
     /////// PROCESS SIDEBAR ///////
     // Extract sidebar
     let sidebar = el.querySelectorAll('table.infobox')[0];
