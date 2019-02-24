@@ -1,16 +1,16 @@
 {
-  "main.css": "/minimalpedia/static/css/main.2ff04a5b.chunk.css",
-  "main.js": "/minimalpedia/static/js/main.4c2aad97.chunk.js",
-  "main.js.map": "/minimalpedia/static/js/main.4c2aad97.chunk.js.map",
+  "main.css": "/minimalpedia/static/css/main.570ab707.chunk.css",
+  "main.js": "/minimalpedia/static/js/main.f34f3481.chunk.js",
+  "main.js.map": "/minimalpedia/static/js/main.f34f3481.chunk.js.map",
   "runtime~main.js": "/minimalpedia/static/js/runtime~main.a2df3ec6.js",
   "runtime~main.js.map": "/minimalpedia/static/js/runtime~main.a2df3ec6.js.map",
   "static/css/2.6848fc9b.chunk.css": "/minimalpedia/static/css/2.6848fc9b.chunk.css",
-  "static/js/2.521c92ef.chunk.js": "/minimalpedia/static/js/2.521c92ef.chunk.js",
-  "static/js/2.521c92ef.chunk.js.map": "/minimalpedia/static/js/2.521c92ef.chunk.js.map",
+  "static/js/2.4becb4cb.chunk.js": "/minimalpedia/static/js/2.4becb4cb.chunk.js",
+  "static/js/2.4becb4cb.chunk.js.map": "/minimalpedia/static/js/2.4becb4cb.chunk.js.map",
   "index.html": "/minimalpedia/index.html",
-  "precache-manifest.18563f942cee0655da453d6d30cd07f6.js": "/minimalpedia/precache-manifest.18563f942cee0655da453d6d30cd07f6.js",
+  "precache-manifest.37d8ba6779a8cd7349baa7a36876bb6b.js": "/minimalpedia/precache-manifest.37d8ba6779a8cd7349baa7a36876bb6b.js",
   "service-worker.js": "/minimalpedia/service-worker.js",
   "static/css/2.6848fc9b.chunk.css.map": "/minimalpedia/static/css/2.6848fc9b.chunk.css.map",
-  "static/css/main.2ff04a5b.chunk.css.map": "/minimalpedia/static/css/main.2ff04a5b.chunk.css.map",
+  "static/css/main.570ab707.chunk.css.map": "/minimalpedia/static/css/main.570ab707.chunk.css.map",
   "static/media/index.css": "/minimalpedia/static/media/open-sans-latin-800italic.79b58175.woff"
 }
