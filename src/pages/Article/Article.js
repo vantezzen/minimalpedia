@@ -46,6 +46,8 @@ class Article extends Component {
 
   // Get article data from wikipedia API
   async getData(query) {
+    query = decodeURIComponent(query);
+
     // Set article title to query
     this.setState({
         title: query
@@ -60,7 +62,6 @@ class Article extends Component {
 
     // Get information using wikipedia API
     wiki({ apiUrl: 'https://en.wikipedia.org/w/api.php' }).page(query).then((page) => {
-      console.log(page)
         // Get image
         page.mainImage().then(image => {
           this.setState({
@@ -102,7 +103,8 @@ class Article extends Component {
         // Is link to another article? Open link with react-router
         if (/^\/wiki\/.*/.test(to)) {
           // Open Wiki article
-          this.props.history.push(to);
+          let article = encodeURIComponent(to.substr(6));
+          this.props.history.push('/wiki/' + article);
 
         // Is link to anchor? Scroll to anchor smoothly
         } else if (to.charAt(0) === '#') {
@@ -201,7 +203,7 @@ class Article extends Component {
 
       <div className="md:flex md:min-h-screen article">
         {/* Sidebar */}
-        <div className="w-screen md:w-1/3 pl-16 p-6 sidebar">
+        <div className="w-screen md:min-h-screen md:w-1/3 pl-16 p-6 sidebar">
           <img className="w-100" src={this.state.image} alt="" />
           <div className="sidebar-table" ref={ this.sidebar } />
         </div>
