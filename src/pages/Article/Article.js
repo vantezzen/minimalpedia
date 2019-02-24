@@ -53,8 +53,14 @@ class Article extends Component {
     // Replace document title with article title
     document.title = query.replace(/_/g, ' ') + ' - minimalpedia';
 
+    // Set timeout to update loading message after 10 seconds if still loading
+    let loadingTimeout = setTimeout(() => {
+      this.text.current.innerHTML = 'Still loading the article from Wikipedia...';
+    }, 10000);
+
     // Get information using wikipedia API
     wiki({ apiUrl: 'https://en.wikipedia.org/w/api.php' }).page(query).then((page) => {
+      console.log(page)
         // Get image
         page.mainImage().then(image => {
           this.setState({
@@ -64,8 +70,19 @@ class Article extends Component {
 
         // Get and process HTML
         page.html().then(html => {
+          clearTimeout(loadingTimeout);
           this.processHtml(html);
         })
+    }).catch(err => {
+      clearTimeout(loadingTimeout);
+
+      // Replace common errors with custom error messages
+      if (String(err) === "Error: No article found") {
+        err = 'Sorry, but we couldn\'t find this article on Wikipedia'
+      }
+
+      // Display error
+      this.text.current.innerHTML = err;
     });
   }
 
