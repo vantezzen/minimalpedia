@@ -97,21 +97,24 @@ class Article extends Component {
       let to = a.getAttribute('href');
 
       a.addEventListener('click', evt => {
+        evt.preventDefault();
+
         // Is link to another article? Open link with react-router
         if (/^\/wiki\/.*/.test(to)) {
           // Open Wiki article
-          evt.preventDefault();
           this.props.history.push(to);
 
         // Is link to anchor? Scroll to anchor smoothly
         } else if (to.charAt(0) === '#') {
-          evt.preventDefault();
           document.querySelector(to).scrollIntoView({
             behavior: 'smooth'
           });
-        }
 
-        // Else it is an external link - don't do anything, simply open the link
+        // Else it is an external link - open the link in a new tab
+        } else {
+          var newTab = window.open(to, '_blank');
+          newTab.focus();
+        }
       });
     });
 
