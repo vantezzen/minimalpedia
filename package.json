@@ -22,7 +22,7 @@
     "tailwind": "tailwind",
     "styles:build": "tailwind build src/styles/tailwind.src.css -c tailwind.js -o src/styles/tailwind.css",
     "predeploy": "yarn build",
-    "deploy": "gh-pages -d build"
+    "deploy": "echo 'minimalpedia.vantezzen.io' > ./build/CNAME && gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
