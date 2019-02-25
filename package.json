@@ -2,7 +2,7 @@
   "name": "minimalpedia",
   "version": "0.2.1",
   "license": "MIT",
-  "homepage": "https://vantezzen.github.io/minimalpedia",
+  "homepage": "https://minimalpedia.vantezzen.io",
   "dependencies": {
     "react": "^16.8.2",
     "react-dom": "^16.8.2",

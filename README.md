@@ -14,7 +14,7 @@ The design is based on [Dmitriy Kozhevnikov's Wikipedia Imagination](https://www
 - Dark mode
 
 ## Usage
-To use minimalpedia, visit [vantezzen.github.io/minimalpedia](https://vantezzen.github.io/minimalpedia).<br>
+To use minimalpedia, visit [minimalpedia.vantezzen.io](https://minimalpedia.vantezzen.io).<br>
 Alternatively, you can download the repository from [github.com/vantezzen/minimalpedia](https://github.com/vantezzen/minimalpedia), then install the required dependencies via `yarn install` and start the developement server with `yarn start` or build using `yarn build`.
 
 ## Available Scripts
