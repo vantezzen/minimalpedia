@@ -13,6 +13,7 @@ import './home.css'
 export default class Home extends Component {
   state = {
     query: '', // Current search query
+    language: 'en', // Current language
     results: {}, // Current search results
     totalResults: 10 // Number of results found
   }
@@ -21,6 +22,7 @@ export default class Home extends Component {
     super(props);
 
     this.handleSearchUpdate = this.handleSearchUpdate.bind(this);
+    this.handleLanguageUpdate = this.handleLanguageUpdate.bind(this);
   }
 
   componentDidMount() {
@@ -37,14 +39,26 @@ export default class Home extends Component {
       this.setState(state)
     }, () => {
       return this.state
+    }, this.state.language);
+  }
+
+
+  // Handle update of language
+  handleLanguageUpdate(language) {
+    this.setState({
+      language
     });
   }
 
  render() {
    return (
      <div>
-       <SearchBox expanded={ this.state.query === '' } onChange={ this.handleSearchUpdate } />
-       { this.state.query !== '' && (<ResultList results={ this.state.results } totalResults={this.state.totalResults} />) }
+       <SearchBox 
+        expanded={ this.state.query === '' } 
+        onChange={ this.handleSearchUpdate } 
+        onLanguageChange={ this.handleLanguageUpdate } 
+        language={ this.state.language } />
+       { this.state.query !== '' && (<ResultList results={ this.state.results } totalResults={this.state.totalResults} language={ this.state.language } />) }
      </div>
    );
  }

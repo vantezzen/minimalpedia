@@ -36,7 +36,7 @@ export default class Nav extends Component {
             this.setState(state)
         }, () => {
             return this.state
-        });
+        }, this.props.language);
     }
 
     render() {
@@ -50,7 +50,7 @@ export default class Nav extends Component {
                 {/* Right: Searchbox */}
                 <div className="w-1/2 md:w-1/3">
                     <input type="text" className="w-full md:w-3/4 outline-none bg-transparent float-right" placeholder="Search..." onChange={ this.handleSearchUpdate } value={this.state.query} />
-                    { this.state.query !== '' && (<NavResultList results={ this.state.results } totalResults={this.state.totalResults} setQuery={this.setQuery} />) }
+                    { this.state.query !== '' && (<NavResultList results={ this.state.results } totalResults={this.state.totalResults} setQuery={this.setQuery} language={this.props.language} />) }
                 </div>
             </nav>
         )

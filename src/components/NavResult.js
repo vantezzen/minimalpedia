@@ -12,7 +12,7 @@ class NavResult extends Component {
     }
 
     openLink() {
-        this.props.history.push('/wiki/' + encodeURIComponent(this.props.result.title));
+        this.props.history.push('/wiki/' + encodeURIComponent(this.props.result.title) + '/' + this.props.language);
         this.props.setQuery('');
     }
 

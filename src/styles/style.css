@@ -101,3 +101,6 @@ body.dark-mode .shadow {
 .outline-none:focus, .outline-none:hover, .outline-none:active {
   outline: 0;
 }
+.border-none:focus, .border-none:hover, .border-none:active {
+  border-style: none;
+}

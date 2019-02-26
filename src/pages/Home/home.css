@@ -1,5 +1,16 @@
+.head, .search, .language-select {
+  transition: all 0.5s ease-in-out;
+}
+
 .search-box {
     max-width: 100%;
+}
+
+.language-select, .language-select:active, .language-select:focus {
+    -moz-appearance:none;
+    border: none;
+    box-shadow: none;
+    outline: none;
 }
 
 .result-img {

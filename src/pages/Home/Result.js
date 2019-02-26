@@ -10,7 +10,7 @@ export default class Result extends Component {
 
         return (
             <div key={result.title}>
-                <Link to={"/wiki/" + encodeURIComponent(result.title)} className="result overflow-hidden h-48 p-4 flex mb-12 no-underline color-inherit">
+                <Link to={"/wiki/" + encodeURIComponent(result.title) + '/' + this.props.language} className="result overflow-hidden h-48 p-4 flex mb-12 no-underline color-inherit">
                         <div className="result-img-container">
                             <img className="result-img h-32 pr-12" src={result.image} alt="" />
                         </div>

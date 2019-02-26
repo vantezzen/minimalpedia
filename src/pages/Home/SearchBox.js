@@ -9,7 +9,9 @@ export default class Search extends Component {
         super(props);
   
         this.updateQuery = this.updateQuery.bind(this);
+        this.handleLanguageChange = this.handleLanguageChange.bind(this);
         this.searchbox = React.createRef();
+        this.language = React.createRef();
     }
 
     // Update search query
@@ -18,6 +20,12 @@ export default class Search extends Component {
             query: evt.target.value
         });
         this.props.onChange(evt.target.value);
+    }
+
+    // Handle language change update
+    handleLanguageChange(evt) {
+        this.props.onLanguageChange(evt.target.value);
+        this.language.current.blur();
     }
 
     // Focus searchbox when component mounts
@@ -34,11 +42,26 @@ export default class Search extends Component {
                         <span className="font-light">minimal</span><span className="font-normal">pedia</span>
                     </div>
 
-                    {/* Searchbox */}
-                    <div className={ "search " + (this.props.expanded ? 'pt-32' : '') }>
+                    {/* Searchbox and language selector */}
+                    <div className={ "search " + (this.props.expanded ? 'pt-32' : 'pt-4') }>
+                        <select 
+                            className={"w-full outline-none bg-transparent whiteInDarkMode language-select " + (this.props.expanded ? '' : 'hidden') }
+                            onChange={this.handleLanguageChange}
+                            ref={ this.language }
+                            value={ this.props.language }>
+                            <option value="en">english</option>
+                            <option value="de">deutsch</option>
+                            <option value="es">español</option>
+                            <option value="it">italiano</option>
+                            <option value="ja">日本語</option>
+                            <option value="pl">polski</option>
+                            <option value="ru">pусский</option>
+                            <option value="fr">français</option>
+                            <option value="nl">nederlands</option>
+                        </select>
                         <input 
                             type="text" 
-                            className="search-box h-48 w-full outline-none text-5xl font-bold bg-transparent" 
+                            className="search-box h-24 w-full outline-none text-5xl font-bold bg-transparent" 
                             placeholder="Search..." 
                             value={ this.state.query } 
                             onChange={ this.updateQuery } 

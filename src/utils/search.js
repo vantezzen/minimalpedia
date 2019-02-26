@@ -1,14 +1,14 @@
 import wiki from 'wikijs'
 
 // Query Wikipedia for search query
-export default async function search(query, setState, state) {
+export default async function search(query, setState, state, language = 'en') {
     // Reset number of results
     setState({
         totalResults: 10
     })
 
     // Get query results
-    let results = (await wiki({ apiUrl: 'https://en.wikipedia.org/w/api.php' }).search(query)).results;
+    let results = (await wiki({ apiUrl: `https://${language}.wikipedia.org/w/api.php` }).search(query)).results;
 
     // Show general information
     if (query === state().query) {
@@ -37,7 +37,7 @@ export default async function search(query, setState, state) {
 
     // Query for details on the first 10 results
     for (let key = 0; key < 10 && key < results.length; key++) {
-        wiki({ apiUrl: 'https://en.wikipedia.org/w/api.php' }).page(results[key]).then(async (page) => {
+        wiki({ apiUrl: `https://${language}.wikipedia.org/w/api.php` }).page(results[key]).then(async (page) => {
         // Get image and summary
         let image = await page.mainImage()
         let text = await page.summary()

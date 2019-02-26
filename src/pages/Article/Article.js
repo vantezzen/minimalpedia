@@ -24,7 +24,8 @@ class Article extends Component {
   // Load article data on mount
   componentDidMount() {
       let article = this.props.match.params.article;
-      this.getData(article);
+      let language = this.props.match.params.language ? this.props.match.params.language : 'en';
+      this.getData(article, language);
   }
 
   // Load article data on location update
@@ -40,12 +41,13 @@ class Article extends Component {
       });
 
       let article = this.props.match.params.article;
-      this.getData(article);
+      let language = this.props.match.params.language ? this.props.match.params.language : 'en';
+      this.getData(article, language);
     }
   }
 
   // Get article data from wikipedia API
-  async getData(query) {
+  async getData(query, language) {
     query = decodeURIComponent(query);
 
     // Set article title to query
@@ -61,7 +63,7 @@ class Article extends Component {
     }, 10000);
 
     // Get information using wikipedia API
-    wiki({ apiUrl: 'https://en.wikipedia.org/w/api.php' }).page(query).then((page) => {
+    wiki({ apiUrl: `https://${language}.wikipedia.org/w/api.php` }).page(query).then((page) => {
         // Get image
         page.mainImage().then(image => {
           this.setState({
@@ -104,7 +106,8 @@ class Article extends Component {
         if (/^\/wiki\/.*/.test(to)) {
           // Open Wiki article
           let article = encodeURIComponent(to.substr(6));
-          this.props.history.push('/wiki/' + article);
+          let language = this.props.match.params.language ? this.props.match.params.language : 'en';
+          this.props.history.push('/wiki/' + article + '/' + language);
 
         // Is link to anchor? Scroll to anchor smoothly
         } else if (to.charAt(0) === '#') {
@@ -199,7 +202,7 @@ class Article extends Component {
  render() {
    return (
      <div>
-      <Nav />
+      <Nav language={ this.props.match.params.language ? this.props.match.params.language : 'en' } />
 
       <div className="md:flex md:min-h-screen article">
         {/* Sidebar */}

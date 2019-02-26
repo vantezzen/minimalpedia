@@ -10,7 +10,7 @@ const Routes = (props) => (
   <Router {...props}>
     <div>
       <Switch>
-        <Route path="/wiki/:article" component={Article} />
+        <Route path="/wiki/:article?/:language?" component={Article} />
         <Route path="/" component={Home} />
       </Switch>
       <Footer />
