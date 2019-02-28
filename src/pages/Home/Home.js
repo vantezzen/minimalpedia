@@ -59,6 +59,13 @@ export default class Home extends Component {
   constructor(props) {
     super(props);
 
+    // Set language to navigator language
+    let browserLanguage = navigator.language.substr(0, 2);
+    let language = this.state.languages.find(language => language.value === browserLanguage)
+    if (language) {
+      this.state.language = browserLanguage;
+    }
+
     this.handleSearchUpdate = this.handleSearchUpdate.bind(this);
     this.handleLanguageUpdate = this.handleLanguageUpdate.bind(this);
   }
