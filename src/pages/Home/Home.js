@@ -13,6 +13,44 @@ import './home.css'
 export default class Home extends Component {
   state = {
     query: '', // Current search query
+    languages: [ // List of availible languages
+      {
+        name: 'english',
+        value: 'en'
+      },
+      {
+        name: 'deutsch',
+        value: 'de'
+      },
+      {
+        name: 'español',
+        value: 'es'
+      },
+      {
+        name: 'italiano',
+        value: 'it'
+      },
+      {
+        name: '日本語',
+        value: 'ja'
+      },
+      {
+        name: 'polski',
+        value: 'pl'
+      },
+      {
+        name: 'pусский',
+        value: 'ru'
+      },
+      {
+        name: 'français',
+        value: 'fr'
+      },
+      {
+        name: 'nederlands',
+        value: 'nl'
+      }
+    ],
     language: 'en', // Current language
     results: {}, // Current search results
     totalResults: 10 // Number of results found
@@ -57,7 +95,8 @@ export default class Home extends Component {
         expanded={ this.state.query === '' } 
         onChange={ this.handleSearchUpdate } 
         onLanguageChange={ this.handleLanguageUpdate } 
-        language={ this.state.language } />
+        language={ this.state.language }
+        availibleLanguages={ this.state.languages } />
        { this.state.query !== '' && (<ResultList results={ this.state.results } totalResults={this.state.totalResults} language={ this.state.language } />) }
      </div>
    );

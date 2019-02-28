@@ -49,15 +49,12 @@ export default class Search extends Component {
                             onChange={this.handleLanguageChange}
                             ref={ this.language }
                             value={ this.props.language }>
-                            <option value="en">english</option>
-                            <option value="de">deutsch</option>
-                            <option value="es">español</option>
-                            <option value="it">italiano</option>
-                            <option value="ja">日本語</option>
-                            <option value="pl">polski</option>
-                            <option value="ru">pусский</option>
-                            <option value="fr">français</option>
-                            <option value="nl">nederlands</option>
+
+                            {
+                                this.props.availibleLanguages.map(lang => (
+                                    <option key={ lang.value } value={ lang.value }>{ lang.name }</option>
+                                ))
+                            }
                         </select>
                         <input 
                             type="text" 
