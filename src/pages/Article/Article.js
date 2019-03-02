@@ -43,7 +43,12 @@ class Article extends Component {
       this.sidebar.current.innerHTML = '';
       this.text.current.innerHTML = 'Getting your article from Wikipedia...';
       this.setState({
-          image: ''
+          image: '',
+          hover: {
+            show:false,
+            position: [0, 0],
+            article: ''
+          }
       });
 
       let article = this.props.match.params.article;
