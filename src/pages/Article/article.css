@@ -25,6 +25,10 @@ body.dark-mode .article {
 }
 
 /* SIDEBAR */
+.article .sidebar {
+    transition: all 0.5s ease-in-out;
+}
+
 body.light-mode .article .sidebar {
     background-color: #F8F8F8;
 }
