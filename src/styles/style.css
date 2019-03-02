@@ -13,8 +13,16 @@ body {
   background-color: #FFFFFF;
 }
 
+.bg-secondary {
+  background-color: #ebebeb;
+}
+
 body.dark-mode, body.dark-mode .bg-main {
   background-color: #17181C;
+  color: #FFFFFF;
+}
+body.dark-mode .bg-secondary {
+  background-color: #232631;
   color: #FFFFFF;
 }
 
@@ -92,6 +100,10 @@ body.dark-mode .shadow {
 
 .bg-transparent {
   background-color: transparent;
+}
+
+.text-2xs {
+  font-size: 0.65rem;
 }
 
 .color-inherit {

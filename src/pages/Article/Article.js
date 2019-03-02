@@ -4,6 +4,7 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import Nav from '../../components/Nav'
+import HoverPreview from './hoverPreview';
 
 import wiki from 'wikijs'
 import './article.css'
@@ -11,7 +12,12 @@ import './article.css'
 class Article extends Component {
   state = {
     image: '', // Main article image
-    title: '' // Article title
+    title: '', // Article title
+    hover: {  // Information for the hover preview
+      show: false,  // Show the hover preview?
+      position: [ 0, 0 ], // Position of the hover preview
+      article: '' // Article to show in the hover preview
+    }
   }
 
   constructor(props) {
@@ -97,7 +103,10 @@ class Article extends Component {
 
     // Replace links
     el.querySelectorAll('a').forEach(a => {
+      // Link the link is pointing to
       let to = a.getAttribute('href');
+      // Is the link hovered on?
+      let isOnHover = false;
 
       a.addEventListener('click', evt => {
         evt.preventDefault();
@@ -121,6 +130,56 @@ class Article extends Component {
           newTab.focus();
         }
       });
+
+      // HOVER PREVIEW
+      a.addEventListener('mouseover', evt => {
+        // Only show hover previews on Wikipedia articles
+        if (/^\/wiki\/.*/.test(to)) {
+          isOnHover = true;
+
+          // Update state to hover article
+          let article = encodeURIComponent(to.substr(6));
+          this.setState((state) => {
+            return {
+              hover: {
+                ...state.hover,
+                article,
+                position: [ evt.pageY, evt.pageX ]
+              }
+            }
+          });
+          
+          // Wait 500ms before showing preview
+          setTimeout(() => {
+            // Test if still hovering element
+            if (isOnHover) {
+              // Show preview
+              this.setState((state) => {
+                return {
+                  hover: {
+                    ...state.hover,
+                    show: true
+                  }
+                }
+              });
+            }
+          }, 500);
+        }
+      });
+
+      a.addEventListener('mouseleave', evt => {
+        isOnHover = false;
+
+        // Hide hover preview
+        this.setState((state) => {
+          return {
+            hover: {
+              ...state.hover,
+              show: false
+            }
+          }
+        });
+      })
     });
 
     // Remove specific style attributes
@@ -205,6 +264,13 @@ class Article extends Component {
       <Nav language={ this.props.match.params.language ? this.props.match.params.language : 'en' } />
 
       <div className="md:flex md:min-h-screen article">
+        {/* Hover Preview shown when hovering over other Wikipedia articles */}
+        <HoverPreview 
+          language={ this.props.match.params.language ? this.props.match.params.language : 'en' }
+          position={ this.state.hover.position } 
+          show={ this.state.hover.show } 
+          article={ this.state.hover.article } />
+
         {/* Sidebar */}
         <div className="w-screen md:min-h-screen md:w-1/3 pl-16 p-6 sidebar">
           <img className="w-100" src={this.state.image} alt="" />
