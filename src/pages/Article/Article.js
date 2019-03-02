@@ -51,6 +51,10 @@ class Article extends Component {
           }
       });
 
+      // Scroll back to top
+      window.scrollTo(0, 0);
+
+      // Get new article data
       let article = this.props.match.params.article;
       let language = this.props.match.params.language ? this.props.match.params.language : 'en';
       this.getData(article, language);
