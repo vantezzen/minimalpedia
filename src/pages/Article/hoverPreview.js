@@ -36,7 +36,7 @@ export default class HoverPreview extends Component {
             title: this.props.article
         })
 
-        wiki({ apiUrl: `https://${this.props.language}.wikipedia.org/w/api.php` }).page(this.props.article).then((page) => {
+        wiki({ apiUrl: `https://${this.props.language}.wikipedia.org/w/api.php` }).page(decodeURIComponent(this.props.article)).then((page) => {
             // Get image and summary
             page.mainImage().then(image => {
                 this.setState({image})
@@ -67,7 +67,7 @@ export default class HoverPreview extends Component {
 
                 <div className="px-6 py-4">
                     {/* Heading */}
-                    <div className="font-bold text-xl mb-2">{props.article.replace(/_/g, ' ')}</div>
+                    <div className="font-bold text-xl mb-2">{decodeURIComponent(props.article).replace(/_/g, ' ')}</div>
 
                     {/* Text preview */}
                     <p className="text-grey-darker text-2xs">

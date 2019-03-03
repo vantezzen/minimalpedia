@@ -121,11 +121,16 @@ class Article extends Component {
         evt.preventDefault();
 
         // Is link to another article? Open link with react-router
-        if (/^\/wiki\/.*/.test(to)) {
+        if (/^\/wiki\/((?!File:).)*$/.test(to)) {
           // Open Wiki article
           let article = encodeURIComponent(to.substr(6));
           let language = this.props.match.params.language ? this.props.match.params.language : 'en';
           this.props.history.push('/wiki/' + article + '/' + language);
+
+        // Is link to Wikipedia file? Redirect to Wikipedia
+        } else if (/^\/wiki\/File:.*$/.test(to)) {
+          var wikipediaFile = window.open(`https://${this.props.match.params.language}.wikipedia.org${to}`, '_blank');
+          wikipediaFile.focus();
 
         // Is link to anchor? Scroll to anchor smoothly
         } else if (to.charAt(0) === '#') {
@@ -143,7 +148,7 @@ class Article extends Component {
       // HOVER PREVIEW
       a.addEventListener('mouseover', evt => {
         // Only show hover previews on Wikipedia articles
-        if (/^\/wiki\/.*/.test(to)) {
+        if (/^\/wiki\/((?!File:).)*$/.test(to)) {
           isOnHover = true;
 
           // Update state to hover article
