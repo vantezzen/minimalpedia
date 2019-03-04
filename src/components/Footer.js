@@ -1,12 +1,21 @@
 import React from 'react'
+import { withRouter } from 'react-router-dom'
 import { Moon, ArrowUp } from 'react-feather'
 import useDarkMode from 'use-dark-mode';
 
-const Footer = () => {
+const Footer = (router) => {
     const darkMode = useDarkMode(false);
 
     const scrollToTop = () => {
-        document.querySelector('nav').scrollIntoView({
+        // Element to scroll to, .head by default
+        let scrollToElement = document.querySelector('.head');
+
+        if (/\/wiki\/.*/.test(router.location.pathname)) {
+            scrollToElement = document.querySelector('nav')
+        }
+
+        // Scroll to element smoothly
+        scrollToElement.scrollIntoView({
             behavior: 'smooth'
         });
     }
@@ -15,7 +24,7 @@ const Footer = () => {
         <div className="footer fixed w-screen flex items-center justify-between flex-wrap p-6">
             
             <div>
-                {/* Darkmode toggle button */}
+                {/* Scroll to top button */}
                 <button onClick={scrollToTop} className="outline-none pb-5">
                     <ArrowUp className="whiteInDarkMode" />
                 </button><br />
@@ -28,4 +37,4 @@ const Footer = () => {
         </div>
     )
 }
-export default Footer;
+export default withRouter(Footer);
