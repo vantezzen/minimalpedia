@@ -45,7 +45,7 @@ class Article extends Component {
       this.setState({
           image: '',
           hover: {
-            show:false,
+            show: false,
             position: [0, 0],
             article: ''
           }
@@ -71,6 +71,14 @@ class Article extends Component {
     });
     // Replace document title with article title
     document.title = query.replace(/_/g, ' ') + ' - minimalpedia';
+    // Reset hover preview
+    this.setState({
+      hover: {
+        show: false,
+        position: [0, 0],
+        article: ''
+      }
+    });
 
     // Set timeout to update loading message after 10 seconds if still loading
     let loadingTimeout = setTimeout(() => {
@@ -114,8 +122,6 @@ class Article extends Component {
     el.querySelectorAll('a').forEach(a => {
       // Link the link is pointing to
       let to = a.getAttribute('href');
-      // Is the link hovered on?
-      let isOnHover = false;
 
       a.addEventListener('click', evt => {
         evt.preventDefault();
@@ -146,10 +152,17 @@ class Article extends Component {
       });
 
       // HOVER PREVIEW
+      // Is the link hovered on?
+      let isOnHover = false;
+      // Current article when the link was hovered on. 
+      // This is to prevent opening the hover preview after article change
+      let pageOnHoverStart = '';
+
       a.addEventListener('mouseover', evt => {
         // Only show hover previews on Wikipedia articles
         if (/^\/wiki\/((?!File:).)*$/.test(to)) {
           isOnHover = true;
+          pageOnHoverStart = this.state.title.substr();
 
           // Update state to hover article
           let article = encodeURIComponent(to.substr(6));
@@ -165,8 +178,8 @@ class Article extends Component {
           
           // Wait 500ms before showing preview
           setTimeout(() => {
-            // Test if still hovering element
-            if (isOnHover) {
+            // Test if still hovering element and still on same page
+            if (isOnHover && pageOnHoverStart === this.state.title) {
               // Show preview
               this.setState((state) => {
                 return {
