@@ -165,7 +165,7 @@ class Article extends Component {
           pageOnHoverStart = this.state.title.substr();
 
           // Update state to hover article
-          let article = encodeURIComponent(to.substr(6));
+          let article = to.substr(6);
           this.setState((state) => {
             return {
               hover: {
