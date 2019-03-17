@@ -33,6 +33,8 @@ const Footer = (router) => {
                     <Moon className="whiteInDarkMode" />
                 </button>
             </div>
+
+            {/* Empty <div> to get the footer icons to force footer icons to the left */}
             <div />
         </div>
     )

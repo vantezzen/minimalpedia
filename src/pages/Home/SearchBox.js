@@ -36,14 +36,14 @@ export default class Search extends Component {
     render() {
         return (
             <div>
-                <div className={ "head px-16 " + (this.props.expanded ? 'pt-32' : 'pt-10') }>
+                <div className={ "head px-16 pt-10 " + (this.props.expanded ? 'md:pt-32' : '') }>
                     {/* Heading */}
                     <div className="heading text-center text-2xl">
                         <span className="font-light">minimal</span><span className="font-normal">pedia</span>
                     </div>
 
                     {/* Searchbox and language selector */}
-                    <div className={ "search " + (this.props.expanded ? 'pt-32' : 'pt-4') }>
+                    <div className={ "search " + (this.props.expanded ? 'pt-8 md:pt-32' : 'pt-4') }>
                         <select 
                             className={"w-full outline-none bg-transparent whiteInDarkMode language-select " + (this.props.expanded ? '' : 'hidden') }
                             onChange={this.handleLanguageChange}

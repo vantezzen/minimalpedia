@@ -5,6 +5,7 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import Nav from '../../components/Nav'
 import HoverPreview from './hoverPreview';
+import { ChevronDown, ChevronUp } from 'react-feather'
 
 import wiki from 'wikijs'
 import './article.css'
@@ -17,11 +18,14 @@ class Article extends Component {
       show: false,  // Show the hover preview?
       position: [ 0, 0 ], // Position of the hover preview
       article: '' // Article to show in the hover preview
-    }
+    },
+    sidebarOpen: false // Sidebar opened/closed on small devices
   }
 
   constructor(props) {
     super(props);
+
+    this.toggleSidebar = this.toggleSidebar.bind(this)
 
     this.sidebar = React.createRef();
     this.text = React.createRef();
@@ -218,7 +222,10 @@ class Article extends Component {
       // - border
       // - border-*
       // - color
-      let styleRegex = /(background(-color)?|border(-[^:]*)?|color):.*?(;|$)/gi;
+      // - float
+      // - width
+      // - font-size
+      let styleRegex = /(background(-color)?|border(-[^:]*)?|color|float|width|font-size):.*?(;|$)/gi;
       elementsWithStyle.forEach(element => {
         let style = element.getAttribute('style');
 
@@ -232,6 +239,10 @@ class Article extends Component {
     /////// PROCESS SIDEBAR ///////
     // Extract sidebar
     let sidebar = el.querySelectorAll('table.infobox')[0];
+
+    if (!sidebar) {
+      sidebar = el.querySelectorAll('table.vertical-navbox')[0];
+    }
 
     // Only process sidebar if a sidebar exists
     if (sidebar) {
@@ -269,6 +280,16 @@ class Article extends Component {
       this.sidebar.current.appendChild(sidebar);
     }
 
+    /////// PROCESS TRIGHT THUMBNAILS ///////
+    // Extract thumbnails
+    let thumbnails = el.querySelectorAll('div.thumb.tright');
+
+    if (thumbnails) {
+      thumbnails.forEach(element => {
+        this.sidebar.current.appendChild(element);
+      });
+    }
+
     /////// PROCESS MAIN CONTENT ///////
     let content = el.querySelectorAll('div')[0];
 
@@ -285,6 +306,15 @@ class Article extends Component {
     this.text.current.appendChild(content);
   }
 
+  // Toggle sidebar open/closed
+  toggleSidebar() {
+    this.setState(state => {
+      return {
+        sidebarOpen: (!state.sidebarOpen)
+      }
+    });
+  }
+
  render() {
    return (
      <div>
@@ -299,7 +329,12 @@ class Article extends Component {
           article={ this.state.hover.article } />
 
         {/* Sidebar */}
-        <div className="w-screen md:min-h-screen md:w-1/3 pl-16 p-6 sidebar">
+        {/* Sidebar toggle */}
+        <div className="sidebar w-screen md:hidden p-3 pl-16 flex items-center" onClick={this.toggleSidebar}>
+          { this.state.sidebarOpen ? <ChevronUp /> : <ChevronDown /> } <p className="text-base ml-3 cursor-pointer">Sidebar</p>
+        </div>
+
+        <div className={"w-screen md:min-h-screen w-screen md:w-1/3 pl-16 p-6 sidebar " + ((!this.state.sidebarOpen) ? 'hidden md:block' : '') }>
           <img className="w-100" src={this.state.image} alt="" />
           <div className="sidebar-table" ref={ this.sidebar } />
         </div>
